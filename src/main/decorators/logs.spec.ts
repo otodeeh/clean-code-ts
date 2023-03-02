@@ -1,4 +1,4 @@
-import { AccountModel } from '../../domain/usecases/models/account'
+import { AccountModel } from '../../domain/models/account'
 import { LogErrorRepository } from '../../data/protocols/log-error-repository'
 import { serverError, ok } from '../../presentation/helpers/http-helper'
 import {
