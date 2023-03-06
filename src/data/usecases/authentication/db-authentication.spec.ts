@@ -3,6 +3,7 @@ import { AuthenticationModel } from '../../../domain/usecases/authentication'
 import { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository'
 import { AccountModel } from '../add-account/db-add-account-protocols'
 import { DbAuthentication } from './db-authentication'
+import { resolve } from 'path'
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'any_id',
@@ -94,7 +95,7 @@ describe('DbAuthentication UseCase', () => {
     )
   })
 
-  test('Should throw if hashCompareStub throws', async () => {
+  test('Should throw if hashCompare throws', async () => {
     const { sut, hashCompareStub } = makeSut()
     jest
       .spyOn(hashCompareStub, 'compare')
@@ -103,5 +104,14 @@ describe('DbAuthentication UseCase', () => {
       )
     const promise = sut.auth(makeFakeAuthentication())
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return null if hashCompare returns false', async () => {
+    const { sut, hashCompareStub } = makeSut()
+    jest
+      .spyOn(hashCompareStub, 'compare')
+      .mockReturnValueOnce(new Promise((resolve) => resolve(false)))
+    const accessToken = await sut.auth(makeFakeAuthentication())
+    expect(accessToken).toBeNull()
   })
 })
