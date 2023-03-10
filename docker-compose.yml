@@ -5,10 +5,12 @@ services:
     build: .
     image: clean-code-ts
     restart: always
-    command: npm start
+    command: npm run debug
     volumes:
       - ./dist:/usr/src/clean-code-ts/dist
+      - ./package.json:/usr/src/clean-code-ts/package.json
     ports:
       - "5050:5050"
+      - "9222:9222"
   node:
     image: node:16
