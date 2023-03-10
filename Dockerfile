@@ -1,10 +1,7 @@
-FROM alpine:3.16
-
-ENV NODE_VERSION 14.21.3
-
-WORKDIR /usr/src/clean-node-ts
+FROM node:14-alpine
+WORKDIR /usr/src/clean-code-ts
 COPY ./package.json .
 RUN npm install --only=prod
-COPY ./dist ./dist
-EXPOSE 5000
-CMD npm start
+# COPY ./dist ./dist
+# EXPOSE 5050
+# CMD npm start
