@@ -11,8 +11,8 @@ import {
   serverError,
   ok,
   forbidden
-} from '../../helpers/http/http-helper'
-import { InvalidInUseError } from '../../../presentation/erros'
+} from '../../../helpers/http/http-helper'
+import { InvalidInUseError } from '../../../../presentation/erros'
 
 export class SignUpController implements Controller {
   constructor(
