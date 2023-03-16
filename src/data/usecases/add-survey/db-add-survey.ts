@@ -5,8 +5,8 @@ import {
 } from './db-add-survey-protocols'
 
 export class DbAddSurvey implements AddSurvey {
-  constructor(private readonly addSurveyRepoository: AddSurveyRepository) {}
+  constructor(private readonly addSurveyRepository: AddSurveyRepository) {}
   async add(data: AddSurveyModel): Promise<void> {
-    await this.addSurveyRepoository.add(data)
+    await this.addSurveyRepository.add(data)
   }
 }
