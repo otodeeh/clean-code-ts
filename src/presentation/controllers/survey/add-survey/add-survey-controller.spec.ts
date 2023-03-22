@@ -9,7 +9,7 @@ import {
   badRequest,
   noContent,
   serverError
-} from '../../helpers/http/http-helper'
+} from '../../../helpers/http/http-helper'
 import { rejects } from 'assert'
 
 const makeFakeRequest = (): HttpRequest => ({

@@ -3,7 +3,7 @@ import {
   MissingParamError,
   ServerError,
   InvalidInUseError
-} from '../../../erros'
+} from '../../../errors'
 import {
   AddAccount,
   AddAccountModel,

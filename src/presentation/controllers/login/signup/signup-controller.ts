@@ -12,7 +12,7 @@ import {
   ok,
   forbidden
 } from '../../../helpers/http/http-helper'
-import { InvalidInUseError } from '../../../../presentation/erros'
+import { InvalidInUseError } from '../../../errors'
 
 export class SignUpController implements Controller {
   constructor(
