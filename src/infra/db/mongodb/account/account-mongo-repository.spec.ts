@@ -38,7 +38,7 @@ describe('AccountMongoRepository', () => {
     })
   })
 
-  describe('loadByEmail', () => {
+  describe('loadByEmail()', () => {
     test('Should return an account on loadByEmail success', async () => {
       const sut = makeSut()
       await accountCollection.insertOne({
