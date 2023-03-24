@@ -1,4 +1,4 @@
-import { HashComparer } from '@/data/protocols/criptography/hash-compare'
+import { HashComparer } from '../../../data/protocols/criptography/hash-compare'
 import { Hasher } from '../../../data/protocols/criptography/hasher'
 import bcrypt from 'bcrypt'
 
