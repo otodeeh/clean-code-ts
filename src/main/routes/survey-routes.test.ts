@@ -8,6 +8,28 @@ import env from '../config/env'
 let surveyCollection: Collection
 let accountCollection: Collection
 
+const makeAccessToken = async (): Promise<string> => {
+  const res = await accountCollection.insertOne({
+    name: 'Andre',
+    email: 'deh.hgl@gmail.com',
+    password: '12345',
+    role: 'admin'
+  })
+  const id = res.insertedId
+  const accessToken = sign({ id }, env.jwtSecret)
+  await accountCollection.updateOne(
+    {
+      _id: id
+    },
+    {
+      $set: {
+        accessToken
+      }
+    }
+  )
+  return accessToken
+}
+
 describe('Survey Routes', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
@@ -43,25 +65,8 @@ describe('Survey Routes', () => {
         .expect(403)
     })
 
-    test('Should returns 204 on add survey success', async () => {
-      const res = await accountCollection.insertOne({
-        name: 'Andre',
-        email: 'deh.hgl@gmail.com',
-        password: '12345',
-        role: 'admin'
-      })
-      const id = res.insertedId
-      const accessToken = sign({ id }, env.jwtSecret)
-      await accountCollection.updateOne(
-        {
-          _id: id
-        },
-        {
-          $set: {
-            accessToken
-          }
-        }
-      )
+    test('Should return 204 on add survey with valid accessToken', async () => {
+      const accessToken = await makeAccessToken()
       await request(app)
         .post('/api/surveys')
         .set('x-access-token', accessToken)
@@ -77,6 +82,20 @@ describe('Survey Routes', () => {
             }
           ]
         })
+        .expect(204)
+    })
+  })
+
+  describe('GET /surveys', () => {
+    test('Should return 403 on load surveys without accessToken', async () => {
+      await request(app).get('/api/surveys').expect(403)
+    })
+
+    test('Should return 204 on load surveys with valid accessToken', async () => {
+      const accessToken = await makeAccessToken()
+      await request(app)
+        .get('/api/surveys')
+        .set('x-access-token', accessToken)
         .expect(204)
     })
   })
