@@ -7,7 +7,17 @@
     "sourceMap": true,
     "rootDirs": ["src"],
     "baseUrl": "src",
-    "strict": false
+    "strict": false,
+    "paths": {
+      "src/*": ["src/*"],
+      "src/data/*": ["data/*"],
+      "src/domain/*": ["domain/*"],
+      "src/infra/*": ["infra/*"],
+      "src/main/*": ["main/*"],
+      "src/presentation/*": ["presentation/*"],
+      "src/validation/*": ["validation/*"],
+      "tests/*": ["../tests/*"]
+    }
   },
   "include": ["src"],
   "exclude": []
