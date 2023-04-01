@@ -1,5 +1,5 @@
 import { Collection, ObjectId } from 'mongodb'
-import { SurveyModel } from '../../../../domain/models/survey'
+import { SurveyModel } from 'domain/models/survey'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository'
 
