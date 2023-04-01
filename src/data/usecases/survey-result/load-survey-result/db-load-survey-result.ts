@@ -1,6 +1,8 @@
-import { LoadSurveyResultRepository } from "data/protocols/db/survey-result/load-survey-result-repository";
-import { LoadSurveyResult } from "domain/usecases/survey-result/load-survey-result";
-import { SurveyResultModel } from "../save-survey-result/db-save-survey-result-protocols";
+import {
+  LoadSurveyResultRepository,
+  SurveyResultModel,
+  LoadSurveyResult
+} from './db-load-survey-result-protocols'
 
 export class DbLoadSurveyResult implements LoadSurveyResult {
   constructor(
@@ -8,7 +10,7 @@ export class DbLoadSurveyResult implements LoadSurveyResult {
   ) {}
 
   async load(surveyId: string): Promise<SurveyResultModel> {
-    await this.loadSurveyResultRepository.loadBySurveyId(surveyId);
-    return null;
+    await this.loadSurveyResultRepository.loadBySurveyId(surveyId)
+    return null
   }
 }
