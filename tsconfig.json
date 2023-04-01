@@ -9,13 +9,13 @@
     "baseUrl": "src",
     "strict": false,
     "paths": {
-      "src/*": ["src/*"],
-      "src/data/*": ["data/*"],
-      "src/domain/*": ["domain/*"],
-      "src/infra/*": ["infra/*"],
-      "src/main/*": ["main/*"],
-      "src/presentation/*": ["presentation/*"],
-      "src/validation/*": ["validation/*"],
+      "*": ["src/*"],
+      "data/*": ["data/*"],
+      "domain/*": ["domain/*"],
+      "infra/*": ["infra/*"],
+      "main/*": ["main/*"],
+      "presentation/*": ["presentation/*"],
+      "validation/*": ["validation/*"],
       "tests/*": ["../tests/*"]
     }
   },
